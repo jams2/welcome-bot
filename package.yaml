@@ -30,6 +30,7 @@ dependencies:
 - directory
 - transformers
 - http-types
+- wai-extra
 
 library:
   source-dirs: src

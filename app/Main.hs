@@ -9,6 +9,7 @@ import Control.Monad.Trans.Reader
 import qualified Data.Text.Lazy as T
 import Data.Yaml (decodeFileThrow)
 import Network.HTTP.Types (status403, status501)
+import Network.Wai.Middleware.RequestLogger
 import Options.Applicative
 import Types
   ( AppServiceConfig (..),
@@ -34,6 +35,7 @@ forbidden why = do
 handler :: ReaderT AppServiceConfig ScottyM ()
 handler = do
   knownToken :: T.Text <- asks hsToken
+  lift $ middleware logStdoutDev
   lift $
     put "/transactions/:txId" $ do
       token :: T.Text <- param "access_token" `rescue` \_ -> return ""
