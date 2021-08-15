@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "welcome-bot:lib"
+
+    - path: "./app/Main.hs"
+      component: "welcome-bot:exe:welcome-bot"
+
+    - path: "./app/Paths_welcome_bot.hs"
+      component: "welcome-bot:exe:welcome-bot"
+
+    - path: "./test"
+      component: "welcome-bot:test:welcome-bot-test"
