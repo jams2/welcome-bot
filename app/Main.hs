@@ -35,7 +35,7 @@ handler :: ReaderT AppServiceConfig ScottyM ()
 handler = do
   knownToken :: T.Text <- asks hsToken
   lift $
-    put "/_matrix/app/v1/transactions/:txId" $ do
+    put "/transactions/:txId" $ do
       token :: T.Text <- param "access_token" `rescue` \_ -> return ""
       if knownToken /= token
         then forbidden "Invalid access token"
